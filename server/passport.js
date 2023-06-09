@@ -1,8 +1,9 @@
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
-import dotenv from 'dotenv';
-dotenv.config();
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { config as dotenvConfig } from 'dotenv';
+dotenvConfig();
+import passport from 'passport';
 
-passport.use(
+export default passport.use(
   new GoogleStrategy(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
@@ -10,9 +11,7 @@ passport.use(
       callbackURL: 'api/auth/google/callback',
     },
     function (accessToken, refreshToken, profile, cb) {
-      User.findOrCreate({ googleId: profile.id }, function (err, user) {
-        return cb(err, user);
-      });
+      return cb(null, profile);
     }
   )
 );

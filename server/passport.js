@@ -11,12 +11,12 @@ module.exports = passport.use(
       callbackURL: '/api/auth/google/callback',
     },
     async function (accessToken, refreshToken, profile, cb) {
-      console.log(profile);
       if (profile?.id) {
         await db.User.findOrCreate({
           where: { id: profile.id },
           defaults: {
-            id: profile.id,
+            id: profile?.id,
+            email: profile?.emails[0].value,
             loginType: profile?.provider,
           },
         });

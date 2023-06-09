@@ -1,4 +1,4 @@
-import Sequelize from 'sequelize';
+const Sequelize = require('sequelize');
 
 // Option 3: Passing parameters separately (other dialects)
 const sequelize = new Sequelize('oauth', 'root', null, {
@@ -16,4 +16,4 @@ const connectDb = async () => {
   }
 };
 
-export default connectDb;
+module.exports = connectDb;

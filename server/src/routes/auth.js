@@ -1,13 +1,14 @@
-import passport from 'passport';
-import express from 'express';
-import dotenv from 'dotenv';
-dotenv.config();
-import { loginSuccess } from '../controllers/authController.js';
+const router = require('express').Router();
+const passport = require('passport');
+require('dotenv').config();
+const loginSuccess = require('../controllers/authController');
 
-const router = express.Router();
 router.get(
   '/google',
-  passport.authenticate('google', { scope: ['profile'], session: false })
+  passport.authenticate('google', {
+    scope: ['profile', 'email'],
+    session: false,
+  })
 );
 
 router.get(
@@ -25,4 +26,4 @@ router.get(
 
 router.post('/login-success', loginSuccess);
 
-export default router;
+module.exports = router;

@@ -1,1 +1,3 @@
-export const loginSuccess = () => {};
+const loginSuccess = () => {};
+
+module.exports = loginSuccess;

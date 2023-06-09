@@ -1,13 +1,13 @@
-import express from 'express';
-import cors from 'cors';
-import connectDb from './src/config/connectDb.js';
-import dotenv from 'dotenv';
+const express = require('express');
+const cors = require('cors');
+const connectDb = require('./src/config/connectDb.js');
+const dotenv = require('dotenv');
 dotenv.config();
-import router from './src/routes/auth.js';
-import passport from './passport.js';
+const router = require('./src/routes/auth.js');
+const passport = require('./passport.js');
 
 const app = express();
-await connectDb();
+connectDb();
 
 app.use(
   cors({
